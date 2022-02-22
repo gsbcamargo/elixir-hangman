@@ -1,8 +1,10 @@
 defmodule Hangman do
 
-  @type state :: :initializing | :won | :lost | :good_guess | :bad_guess | :letter_already_used
-  @type game :: any
-  @type tally :: %{
+  alias Hangman.Impl.Game # automatically alias to game
+
+  @type   state :: :initializing | :won | :lost | :good_guess | :bad_guess | :letter_already_used
+  @opaque type game :: Game.t
+  @type   tally :: %{
     turns_left: integer,
     game_state: state,
     letters: list(String.t),
@@ -10,8 +12,7 @@ defmodule Hangman do
   }
 
   @spec new_game() :: game
-  def new_game do
-  end
+  defdelegate new_game, to: Game # the actual implementation of new game is delegated to the module Game, aliased above
 
   @spec make_move(game, String.t) :: { game, tally }
   def make_move(_game, _guess) do
