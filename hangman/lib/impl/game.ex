@@ -1,6 +1,6 @@
 defmodule Hangman.Impl.Game do
 
-  @type t :: %Hangman.Impl.Game{
+  @type t :: %Hangman.Impl.Game{ # %__MODULE__ for shorts
     turns_left: integer,
     game_state: Hangman.state,
     letters: list(String.t),
@@ -15,8 +15,12 @@ defmodule Hangman.Impl.Game do
   )
 
   def new_game do
-    %Hangman.Impl.Game{ # %__MODULE__ for shorts
-      letters: Dictionary.random_word |> String.codepoints()
+      new_game(Dictionary.random_word)
+  end
+
+  def new_game(word) do
+    %__MODULE__{
+      letters: word |> String.codepoints()
     }
   end
 end
