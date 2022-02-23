@@ -4,15 +4,22 @@ defmodule HangmanImplGameTest do
 
   test "new game returns correct word" do
     game = Game.new_game("wombat")
-
     assert game.turns_left == 7
     assert game.game_state == :initializing
     assert game.letters == ["w", "o", "m", "b", "a", "t"]
   end
 
   test "each element is lower case ASCII character" do
-    character_list = Enum.to_list(?a..?z) |> List.to_string()
-    game = Game.new_game(character_list)
-    assert String.contains?(List.to_string(game.letters), String.codepoints(character_list)) == true
+    word = "wombat"
+    game = Game.new_game(word)
+    alphabet = Enum.to_list(?a..?z) |> List.to_string
+    letters = game.letters
+
+  #  assert Enum.each(letters, fn(letter) ->
+  #     String.contains?(letter, String.to_charlist(alphabet))
+  #   end) == true
+
+   assert for letter <- game.letters, do: String.contains?(alphabet, letter)
   end
+
 end
