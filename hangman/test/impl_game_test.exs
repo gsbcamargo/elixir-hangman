@@ -13,7 +13,6 @@ defmodule HangmanImplGameTest do
     word = "wombat"
     game = Game.new_game(word)
     alphabet = Enum.to_list(?a..?z) |> List.to_string
-    letters = game.letters
 
   #  assert Enum.each(letters, fn(letter) ->
   #     String.contains?(letter, String.to_charlist(alphabet))
