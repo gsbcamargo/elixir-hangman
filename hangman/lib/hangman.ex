@@ -9,7 +9,6 @@ defmodule Hangman do
   defdelegate new_game, to: Game # the actual implementation of new game is now delegated to the module Game, aliased above
 
   @spec make_move(game, String.t) :: { game, Type.tally }
-  def make_move(_game, _guess) do
-  end
+  defdelegate make_move(game, guess), to: Game
 
 end

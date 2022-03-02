@@ -21,4 +21,11 @@ defmodule HangmanImplGameTest do
    assert for letter <- game.letters, do: String.contains?(alphabet, letter)
   end
 
+  test "state doesn't change if a game is won" do
+    game = Game.new_game("wombat")
+    game = Map.put(game, :game_state, :won)
+    { new_game, _tally } = Game.make_move(game, "x")
+    assert new_game == game
+  end
+
 end
