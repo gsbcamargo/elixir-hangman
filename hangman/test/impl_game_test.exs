@@ -23,7 +23,7 @@ defmodule HangmanImplGameTest do
 
   test "state doesn't change if a game is won" do
     game = Game.new_game("wombat")
-    game = Map.put(game, :game_state, :won) # map.put is read in the following way: we're gonna map game, on the attribute :game_state, to :won)
+    game = Map.put(game, :game_state, :won) # map.put is read in the following way: we're gonna map game and put on the attribute :game_state as :won)
     { new_game, _tally } = Game.make_move(game, "x")
     assert new_game == game
   end
